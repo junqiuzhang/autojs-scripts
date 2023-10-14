@@ -13,7 +13,6 @@ class BaseApp {
     this.name = name;
     this.packageName = packageName;
   }
-  // eslint-disable-next-line require-yield
   launchApp = Promise.coroutine(function* () {
     if (this.name) {
       app.launchApp(this.name);
@@ -27,7 +26,6 @@ class BaseApp {
     }
     return false;
   });
-  // eslint-disable-next-line require-yield
   isCurrentApp = Promise.coroutine(function* () {
     return currentPackage() === this.packageName;
   });
@@ -37,7 +35,6 @@ class BaseApp {
     }
     return false;
   });
-  // eslint-disable-next-line require-yield
   clickBounds = Promise.coroutine(function* (bounds) {
     yield delay(2000);
     return clickBounds(bounds);
@@ -48,7 +45,6 @@ class BaseApp {
     }
     return false;
   });
-  // eslint-disable-next-line require-yield
   longClickBounds = Promise.coroutine(function* (bounds) {
     yield delay(2000);
     return longClickBounds(bounds);
@@ -67,7 +63,6 @@ class BaseApp {
     }
     return false;
   });
-  // eslint-disable-next-line require-yield
   close = Promise.coroutine(function* () {
     app.close();
   });
