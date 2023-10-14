@@ -65,7 +65,7 @@ class BaseApp {
     return false;
   });
   close = Promise.coroutine(function* () {
-    app.close();
+    exit();
   });
 }
 

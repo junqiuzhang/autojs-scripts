@@ -5,13 +5,13 @@ class AlipayApp extends BaseApp {
     super({ name: '支付宝' });
   }
   clickWoDe() {
-    return this.click(text('我的'));
+    return this.clickBounds([1236, 3000, 1356, 3120]);
   }
   clickZhiFuBaoHuiYuan() {
     return this.clickBounds([0, 580, 1440, 789]);
   }
   clickMeiRiQianDao() {
-    return this.click(text('每日签到'));
+    return this.clickBounds([832, 744, 1063, 831]);
   }
 }
 

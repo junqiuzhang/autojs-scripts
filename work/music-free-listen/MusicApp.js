@@ -19,12 +19,6 @@ class MusicApp extends BaseApp {
   clickJuJue = Promise.coroutine(function* () {
     return this.click(id('button2'));
   });
-  clickFanHui = Promise.coroutine(function* () {
-    return this.clickBounds([24, 137, 125, 259]);
-  });
-  clickTuiChu = Promise.coroutine(function* () {
-    return this.click(id('tme_ad_skip_button'));
-  });
   clickZaiKanYiGe = Promise.coroutine(function* () {
     return this.clickBounds([388, 1692, 1053, 1811]);
   });
