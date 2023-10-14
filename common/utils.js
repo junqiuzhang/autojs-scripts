@@ -14,8 +14,10 @@ const waitForLaunch = (packageName, timeout = 2000) => {
   }, timeout);
 };
 const waitForSelector = (selector, timeout = 2000) => {
-  return waitFor((resolve) => {
-    selector.waitFor();
+  return waitFor(function* (resolve) {
+    while (!selector.exists()) {
+      yield delay(100);
+    }
     resolve();
   }, timeout);
 };

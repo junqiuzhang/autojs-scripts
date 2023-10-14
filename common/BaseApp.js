@@ -27,6 +27,7 @@ class BaseApp {
     return false;
   });
   isCurrentApp = Promise.coroutine(function* () {
+    console.log('currentPackage', currentPackage());
     return currentPackage() === this.packageName;
   });
   click = Promise.coroutine(function* (selector) {

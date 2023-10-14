@@ -7,6 +7,12 @@ var projects = [
     name: 'alipay-sign-in',
     main: './main.js',
   },
+  {
+    id: 2,
+    compile: true,
+    name: 'music-free-listen',
+    main: './main.js',
+  },
 ];
 
 var config = {
