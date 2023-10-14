@@ -1,9 +1,23 @@
-const waitForSelector = (selector, timeout = 2000) => {
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+const waitFor = (func, timeout = 2000) => {
   return new Promise((resolve) => {
-    setTimeout(resolve, timeout);
+    func(() => resolve(true));
+    setTimeout(() => resolve(false), timeout);
+  });
+};
+const waitForLaunch = (packageName, timeout = 2000) => {
+  return waitFor(function* (resolve) {
+    while (currentPackage() !== packageName) {
+      yield delay(1000);
+    }
+    resolve();
+  }, timeout);
+};
+const waitForSelector = (selector, timeout = 2000) => {
+  return waitFor((resolve) => {
     selector.waitFor();
     resolve();
-  });
+  }, timeout);
 };
 /**
  * @param {UiSelector} selector
@@ -22,7 +36,9 @@ const longClickCenter = (selector) => {
   return longClick(rect.centerX(), rect.centerY());
 };
 module.exports = {
+  delay,
   waitForSelector,
+  waitForLaunch,
   clickCenter,
   longClickCenter,
 };

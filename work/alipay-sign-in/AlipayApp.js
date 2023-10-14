@@ -2,13 +2,13 @@ const BaseApp = require('../../common/BaseApp.js');
 
 class AlipayApp extends BaseApp {
   constructor() {
-    super('支付宝');
+    super({ name: '支付宝' });
   }
   clickWoDe() {
     return this.click(text('我的'));
   }
   clickZhiFuBaoHuiYuan() {
-    return this.click(className('android.view.ViewGroup'));
+    return this.clickBounds([0, 580, 1440, 789]);
   }
   clickMeiRiQianDao() {
     return this.click(text('每日签到'));

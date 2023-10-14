@@ -1,10 +1,11 @@
 const AlipayApp = require('./AlipayApp.js');
 
+const alipayApp = new AlipayApp();
 const main = Promise.coroutine(function* () {
-  const alipayApp = new AlipayApp();
+  yield alipayApp.launchApp();
   yield alipayApp.clickWoDe();
   yield alipayApp.clickZhiFuBaoHuiYuan();
   yield alipayApp.clickMeiRiQianDao();
 });
 
-main();
+main().catch(console.log);
