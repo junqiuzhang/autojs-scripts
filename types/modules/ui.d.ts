@@ -44,17 +44,17 @@
 type View = any;
 
 interface UILike {
-    toString(): string;
+  toString(): string;
 }
 
 declare namespace ui {
-    function layout(xml: UILike | any): void;
-    function inflate(xml: UILike | any, parent?: View): void;
-    function findView(id: string): View;
-    function finish()
-    function setContentView(view: View)
-    function run(callback)
-    function post(callback, delay?: number): void;
-    function statusBarColor(color)
-    function showPopupMenu(view, menu)
+  function layout(xml: UILike | any): void;
+  function inflate(xml: UILike | any, parent?: View): void;
+  function findView(id: string): View;
+  function finish();
+  function setContentView(view: View);
+  function run(callback);
+  function post(callback, delay?: number): void;
+  function statusBarColor(color);
+  function showPopupMenu(view, menu);
 }

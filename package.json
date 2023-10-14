@@ -4,6 +4,7 @@
   "private": true,
   "description": "",
   "scripts": {
+    "prettier": "prettier --write .",
     "watch": "parcel watch",
     "build": "parcel build"
   },
@@ -16,7 +17,8 @@
   "targets": {
     "alipay-sign-in": {
       "source": "./work/alipay-sign-in/main.js",
-      "distDir": "dist/alipay-sign-in"
+      "distDir": "dist/alipay-sign-in",
+      "sourceMap": false
     }
   }
 }

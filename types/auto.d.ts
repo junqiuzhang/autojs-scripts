@@ -20,9 +20,6 @@
 /// <reference path="./modules/ui.d.ts" />
 /// <reference path="./modules/threads.d.ts" />
 
+declare global {}
 
-declare global {
-
-}
-
-export { };
+export {};
