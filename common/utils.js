@@ -23,22 +23,42 @@ const waitForSelector = (selector, timeout = 2000) => {
  * @param {UiSelector} selector
  * @returns {boolean}
  */
-const clickCenter = (selector) => {
+const clickSelector = (selector) => {
   const rect = selector.findOne().bounds();
-  return click(rect.centerX(), rect.centerY());
+  click(rect.centerX(), rect.centerY());
+  return true;
+};
+/**
+ * @param {[number, number, number, number]} selector
+ * @returns {boolean}
+ */
+const clickBounds = ([left, top, right, bottom]) => {
+  click((left + right) / 2, (top + bottom) / 2);
+  return true;
 };
 /**
  * @param {UiSelector} selector
  * @returns {boolean}
  */
-const longClickCenter = (selector) => {
+const longClickSelector = (selector) => {
   const rect = selector.findOne().bounds();
-  return longClick(rect.centerX(), rect.centerY());
+  longClick(rect.centerX(), rect.centerY());
+  return true;
+};
+/**
+ * @param {[number, number, number, number]} selector
+ * @returns {boolean}
+ */
+const longClickBounds = ([left, top, right, bottom]) => {
+  longClick((left + right) / 2, (top + bottom) / 2);
+  return true;
 };
 module.exports = {
   delay,
   waitForSelector,
   waitForLaunch,
-  clickCenter,
-  longClickCenter,
+  clickSelector,
+  clickBounds,
+  longClickSelector,
+  longClickBounds,
 };
