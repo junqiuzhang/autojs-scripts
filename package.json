@@ -1,0 +1,22 @@
+{
+  "name": "autojs-scripts",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "scripts": {
+    "watch": "parcel watch",
+    "build": "parcel build"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel": "^2.10.0",
+    "prettier": "^3.0.3"
+  },
+  "targets": {
+    "alipay-sign-in": {
+      "source": "./work/alipay-sign-in/main.js",
+      "distDir": "dist/alipay-sign-in"
+    }
+  }
+}
