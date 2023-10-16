@@ -7,7 +7,7 @@ const watchAd = Promise.coroutine(function* () {
   // Click ad after 5s
   yield delay(5000);
   yield musicApp.clickAd();
-  // Allow app to open another app
+  yield musicApp.clickJiXuGuanKan();
   const clickYunXuResult = yield musicApp.clickYunXu();
   const isCurrentApp = yield musicApp.isCurrentApp();
   if (clickYunXuResult || !isCurrentApp) {

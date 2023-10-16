@@ -19,6 +19,9 @@ class MusicApp extends BaseApp {
   clickJuJue = Promise.coroutine(function* () {
     return this.clickSelector(id('button2'));
   });
+  clickJiXuGuanKan = Promise.coroutine(function* () {
+    return this.clickSelector(text('继续观看'));
+  }
   clickZaiKanYiGe = Promise.coroutine(function* () {
     return this.clickBounds([388, 1692, 1053, 1811]);
   });
