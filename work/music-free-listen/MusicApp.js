@@ -4,6 +4,9 @@ class MusicApp extends BaseApp {
   constructor() {
     super({ name: '音乐', packageName: 'com.miui.player' });
   }
+  clickShouYe = Promise.coroutine(function* () {
+    return this.clickBounds([187, 3025, 292, 3130]);
+  });
   clickMianFeiTing = Promise.coroutine(function* () {
     return this.clickBounds([678, 3025, 762, 3109]);
   });
@@ -19,11 +22,11 @@ class MusicApp extends BaseApp {
   clickJuJue = Promise.coroutine(function* () {
     return this.clickSelector(id('button2'));
   });
-  clickJiXuGuanKan = Promise.coroutine(function* () {
-    return this.clickSelector(text('继续观看'));
-  });
   clickZaiKanYiGe = Promise.coroutine(function* () {
     return this.clickBounds([388, 1692, 1053, 1811]);
+  });
+  clickGuanBiTanChuangAnNiu = Promise.coroutine(function* () {
+    return this.clickBounds([650, 2003, 790, 2143]);
   });
 }
 

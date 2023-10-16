@@ -13,7 +13,7 @@ const waitForLaunch = (packageName, timeout = 2000, interval = 1000) => {
     resolve();
   }, timeout);
 };
-const waitForSelector = (selector, timeout = 2000, interval = 100) => {
+const waitForExist = (selector, timeout = 2000, interval = 100) => {
   return waitFor(function* (resolve) {
     while (!selector.exists()) {
       yield delay(interval);
@@ -57,8 +57,8 @@ const longClickBounds = ([left, top, right, bottom]) => {
 };
 module.exports = {
   delay,
-  waitForSelector,
   waitForLaunch,
+  waitForExist,
   clickSelector,
   clickBounds,
   longClickSelector,

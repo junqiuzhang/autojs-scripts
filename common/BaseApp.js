@@ -1,7 +1,7 @@
 const {
   delay,
   waitForLaunch,
-  waitForSelector,
+  waitForExist,
   clickSelector,
   clickBounds,
   longClickSelector,
@@ -13,32 +13,33 @@ class BaseApp {
     this.name = name;
     this.packageName = packageName;
   }
-  launchApp = Promise.coroutine(function* () {
-    if (this.name) {
-      app.launchApp(this.name);
-      yield waitForLaunch(this.packageName);
-      return true;
-    }
-    if (this.packageName) {
-      app.launchPackage(this.packageName);
-      yield waitForLaunch(this.packageName);
-      return true;
-    }
-    return false;
-  });
-  isCurrentApp = Promise.coroutine(function* () {
+  isLaunchedApp = Promise.coroutine(function* () {
     console.log('currentPackage', currentPackage());
     return currentPackage() === this.packageName;
   });
-  isExist = Promise.coroutine(function* (selector) {
-    return waitForSelector(selector);
+  launchApp = Promise.coroutine(function* () {
+    if (this.name) {
+      app.launchApp(this.name);
+      return waitForLaunch(this.packageName);
+    }
+    if (this.packageName) {
+      app.launchPackage(this.packageName);
+      return waitForLaunch(this.packageName);
+    }
+    return false;
+  });
+  waitForLaunch = Promise.coroutine(function* () {
+    return waitForLaunch(this.packageName);
+  });
+  waitForExist = Promise.coroutine(function* (selector) {
+    return waitForExist(selector);
   });
   fastClick = Promise.coroutine(function* (selector) {
     selector.waitFor();
     selector.findOne().click();
   });
   clickSelector = Promise.coroutine(function* (selector) {
-    if (yield waitForSelector(selector)) {
+    if (yield waitForExist(selector)) {
       return clickSelector(selector);
     }
     return false;
@@ -52,7 +53,7 @@ class BaseApp {
     selector.findOne().longClick();
   });
   longClick = Promise.coroutine(function* (selector) {
-    if (yield waitForSelector(selector)) {
+    if (yield waitForExist(selector)) {
       return longClickSelector(selector);
     }
     return false;
@@ -62,14 +63,14 @@ class BaseApp {
     return longClickBounds(bounds);
   });
   scrollForward = Promise.coroutine(function* (selector) {
-    if (yield waitForSelector(selector)) {
+    if (yield waitForExist(selector)) {
       selector.findOne().scrollForward();
       return true;
     }
     return false;
   });
   scrollBackward = Promise.coroutine(function* (selector) {
-    if (yield waitForSelector(selector)) {
+    if (yield waitForExist(selector)) {
       selector.findOne().scrollBackward();
       return true;
     }
