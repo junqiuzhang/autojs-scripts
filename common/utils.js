@@ -5,18 +5,18 @@ const waitFor = (func, timeout = 2000) => {
     setTimeout(() => resolve(false), timeout);
   });
 };
-const waitForLaunch = (packageName, timeout = 2000) => {
+const waitForLaunch = (packageName, timeout = 2000, interval = 1000) => {
   return waitFor(function* (resolve) {
     while (currentPackage() !== packageName) {
-      yield delay(1000);
+      yield delay(interval);
     }
     resolve();
   }, timeout);
 };
-const waitForSelector = (selector, timeout = 2000) => {
+const waitForSelector = (selector, timeout = 2000, interval = 100) => {
   return waitFor(function* (resolve) {
     while (!selector.exists()) {
-      yield delay(100);
+      yield delay(interval);
     }
     resolve();
   }, timeout);

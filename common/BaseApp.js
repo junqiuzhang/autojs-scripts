@@ -30,6 +30,13 @@ class BaseApp {
     console.log('currentPackage', currentPackage());
     return currentPackage() === this.packageName;
   });
+  isExist = Promise.coroutine(function* (selector) {
+    return waitForSelector(selector);
+  });
+  fastClick = Promise.coroutine(function* (selector) {
+    selector.waitFor();
+    selector.findOne().click();
+  });
   clickSelector = Promise.coroutine(function* (selector) {
     if (yield waitForSelector(selector)) {
       return clickSelector(selector);
@@ -39,6 +46,10 @@ class BaseApp {
   clickBounds = Promise.coroutine(function* (bounds) {
     yield delay(2000);
     return clickBounds(bounds);
+  });
+  fastLongClick = Promise.coroutine(function* (selector) {
+    selector.waitFor();
+    selector.findOne().longClick();
   });
   longClick = Promise.coroutine(function* (selector) {
     if (yield waitForSelector(selector)) {
