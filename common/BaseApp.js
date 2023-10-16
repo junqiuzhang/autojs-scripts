@@ -30,7 +30,7 @@ class BaseApp {
     console.log('currentPackage', currentPackage());
     return currentPackage() === this.packageName;
   });
-  click = Promise.coroutine(function* (selector) {
+  clickSelector = Promise.coroutine(function* (selector) {
     if (yield waitForSelector(selector)) {
       return clickSelector(selector);
     }

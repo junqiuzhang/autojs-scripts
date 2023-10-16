@@ -14,10 +14,10 @@ class MusicApp extends BaseApp {
     return this.clickBounds([79, 2846, 1361, 3021]);
   });
   clickYunXu = Promise.coroutine(function* () {
-    return this.click(id('button1'));
+    return this.clickSelector(id('button1'));
   });
   clickJuJue = Promise.coroutine(function* () {
-    return this.click(id('button2'));
+    return this.clickSelector(id('button2'));
   });
   clickZaiKanYiGe = Promise.coroutine(function* () {
     return this.clickBounds([388, 1692, 1053, 1811]);
