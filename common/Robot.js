@@ -1,22 +1,11 @@
-const {
-  delay,
-  waitForLaunch,
-  waitForExist,
-} = require('./utils.js');
+const { delay, waitForExist } = require('./utils.js');
 
 class Robot {
-  constructor({
-    timeout = 2000,
-  }) {
+  constructor(options = {}) {
+    const { timeout = 2000 } = options;
+
     this.timeout = timeout;
   }
-  isLaunchApp = (appData) => {
-    return currentPackage() === appData.packageName;
-  };
-  waitForLaunchApp = Promise.coroutine(function* (appData) {
-    app.launchPackage(appData.packageName);
-    return waitForLaunch(appData.packageName);
-  });
   isExist = (selector) => {
     return selector.exists();
   };
