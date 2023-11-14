@@ -4,12 +4,6 @@ var projects = [
   {
     id: 1,
     compile: true,
-    name: 'alipay-sign-in',
-    main: './main.js',
-  },
-  {
-    id: 2,
-    compile: true,
     name: 'music-free-listen',
     main: './main.js',
   },

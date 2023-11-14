@@ -1,8 +1,0 @@
-{
-  "name": "alipay-sign-in",
-  "main": "main.js",
-  "ignore": ["build"],
-  "packageName": "com.example.alipaysignin",
-  "versionName": "1.0.0",
-  "versionCode": 1
-}

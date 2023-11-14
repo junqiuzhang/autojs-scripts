@@ -4,7 +4,6 @@
 
 ## 脚本
 
-1. alipay-sign-in: 支付宝会员每日签到
 1. music-free-listen: 小米音乐免费听时长
 
 ## 免责声明
