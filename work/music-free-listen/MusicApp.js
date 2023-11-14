@@ -1,33 +1,20 @@
-const BaseApp = require('../../common/BaseApp.js');
-
-class MusicApp extends BaseApp {
-  constructor() {
-    super({ name: '音乐', packageName: 'com.miui.player' });
+const MusicApp = {
+  name: '音乐',
+  packageName: 'com.miui.player',
+  selectors: {
+    shouYe: text('首页'),
+    mianFeiTing: text('免费听'),
+    huoDeJiangLi: text('点击广告，免费听歌20分钟 | 退出'),
+    yiHuoDeJiangLi: text('已获得免费听歌20分钟 | 退出'),
+    dianJiYiXia: id('tme_ad_min_card_layout'),
+    guanBiTanChuangAnNiu: desc('关闭弹窗按钮'),
+  },
+  bounds: {
+    shouYe: [140, 2268, 219, 2347],
+    mianFeiTing: [500, 2268, 579, 2347],
+    huoDeShiChang: [336, 587, 743, 671],
+    guanBiTanChuangAnNiu: [488, 1502, 593, 1607]
   }
-  clickShouYe = Promise.coroutine(function* () {
-    return this.clickBounds([187, 3025, 292, 3130]);
-  });
-  clickMianFeiTing = Promise.coroutine(function* () {
-    return this.clickBounds([678, 3025, 762, 3109]);
-  });
-  clickHuoDeShiChang = Promise.coroutine(function* () {
-    return this.clickBounds([449, 780, 992, 892]);
-  });
-  clickAd = Promise.coroutine(function* () {
-    return this.clickBounds([79, 2846, 1361, 3021]);
-  });
-  clickYunXu = Promise.coroutine(function* () {
-    return this.clickSelector(id('button1'));
-  });
-  clickJuJue = Promise.coroutine(function* () {
-    return this.clickSelector(id('button2'));
-  });
-  clickZaiKanYiGe = Promise.coroutine(function* () {
-    return this.clickBounds([388, 1692, 1053, 1811]);
-  });
-  clickGuanBiTanChuangAnNiu = Promise.coroutine(function* () {
-    return this.clickBounds([650, 2003, 790, 2143]);
-  });
-}
+};
 
 module.exports = MusicApp;
