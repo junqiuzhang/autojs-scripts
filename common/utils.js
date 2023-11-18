@@ -1,20 +1,31 @@
-const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-const waitFor = (func, timeout = 2000) => {
-  return new Promise((resolve, reject) => {
-    func(resolve);
+const waitFor = (fn, timeout = 1000) =>
+  new Promise((resolve, reject) => {
+    fn(resolve, reject);
     setTimeout(reject, timeout);
   });
-};
-const waitForExist = (selector, timeout = 2000, interval = 100) => {
-  return waitFor(function* (resolve) {
-    while (!selector.exists()) {
-      yield delay(interval);
+const waitForReTry = Promise.coroutine(function* (
+  fn,
+  timeout = 1000,
+  limit = 10
+) {
+  new Promise((resolve, reject) => {
+    function attempt() {
+      waitFor(fn, timeout)
+        .then(resolve)
+        .catch((error) => {
+          if (limit === 0) {
+            reject(error);
+          } else {
+            limit--;
+            setTimeout(attempt, timeout);
+          }
+        });
     }
-    resolve();
-  }, timeout);
-};
+    attempt();
+  });
+});
 
 module.exports = {
-  delay,
-  waitForExist,
+  waitFor,
+  waitForReTry,
 };

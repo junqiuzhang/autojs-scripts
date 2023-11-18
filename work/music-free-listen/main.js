@@ -1,28 +1,24 @@
-const { delay } = require('../../common/utils.js');
-const Robot = require('../../common/Robot.js');
+setScreenMetrics(1080, 2400);
+
 const MusicApp = require('./MusicApp.js');
 
-const robot = new Robot({});
 const main = Promise.coroutine(function* () {
-  app.launchPackage(MusicApp.packageName);
+  yield MusicApp.launch();
   console.log('launch app success');
-  yield robot.clickBoundsAsync(MusicApp.bounds.mianFeiTing);
+  yield MusicApp.mianFeiTing.asyncClick();
   console.log('click 免费听 success');
-  yield robot.clickBoundsAsync(MusicApp.bounds.huoDeShiChang);
+  yield MusicApp.huoDeShiChang.asyncClick();
   console.log('click 获得时长 success');
-  yield delay(7000);
-  if (robot.isExist(MusicApp.selectors.dianJiYiXia)) {
-    robot.clickSelector(MusicApp.selectors.dianJiYiXia);
-    console.log('click 点击一下，获得奖励 success');
-    yield delay(2000);
-    app.launchPackage(MusicApp.packageName);
-    console.log('launch app success');
-    yield delay(2000);
-    back();
-    console.log('back success');
-    yield robot.clickBoundsAsync(MusicApp.bounds.guanBiTanChuangAnNiu);
-    console.log('click 关闭弹窗按钮 success');
-  }
+  sleep(5000);
+  yield MusicApp.dianJiGuangGao.asyncClick();
+  console.log('click 点击一下，获得奖励 success');
+  sleep(2000);
+  yield MusicApp.launch();
+  console.log('launch app success');
+  yield MusicApp.guanBiGuangGao.asyncClick();
+  console.log('click 关闭广告 success');
+  yield MusicApp.guanBiTanChuangAnNiu.asyncClick();
+  console.log('click 关闭弹窗按钮 success');
   console.log('done');
 });
 
