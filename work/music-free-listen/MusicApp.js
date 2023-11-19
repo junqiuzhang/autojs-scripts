@@ -1,6 +1,4 @@
-const App = require('../../common/app.js');
-
-const MusicApp = new App({
+const MusicAppOptions = {
   appName: '音乐',
   packageName: 'com.miui.player',
   elements: [
@@ -20,8 +18,13 @@ const MusicApp = new App({
       bounds: [860, 2268, 939, 2347],
     },
     {
-      name: 'huoDeShiChang',
-      bounds: [336, 587, 743, 671],
+      name: 'guanBiLvZuanTanChuangAnNiu',
+      desc: '关闭弹窗按钮',
+      bounds: [482, 1744, 598, 1860],
+    },
+    {
+      name: 'kanShiPin',
+      bounds: [39, 940, 1041, 1046],
     },
     {
       name: 'huoDeJiangLi',
@@ -42,11 +45,11 @@ const MusicApp = new App({
       bounds: [513, 152, 644, 214],
     },
     {
-      name: 'guanBiTanChuangAnNiu',
+      name: 'guanBiYiHuoDeJiangLiTanChuangAnNiu',
       desc: '关闭弹窗按钮',
       bounds: [488, 1502, 593, 1607],
     },
   ],
-});
+};
 
-module.exports = MusicApp;
+module.exports = MusicAppOptions;

@@ -3,11 +3,8 @@ const waitFor = (fn, timeout = 1000) =>
     fn(resolve, reject);
     setTimeout(reject, timeout);
   });
-const waitForReTry = Promise.coroutine(function* (
-  fn,
-  timeout = 1000,
-  limit = 10
-) {
+
+const waitForReTry = (fn, timeout = 1000, limit = 10) =>
   new Promise((resolve, reject) => {
     function attempt() {
       waitFor(fn, timeout)
@@ -23,9 +20,13 @@ const waitForReTry = Promise.coroutine(function* (
     }
     attempt();
   });
-});
+
+const setUp = () => {
+  setScreenMetrics(1080, 2400);
+};
 
 module.exports = {
   waitFor,
   waitForReTry,
+  setUp,
 };
