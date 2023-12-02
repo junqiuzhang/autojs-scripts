@@ -5,35 +5,27 @@ const MusicAppOptions = {
     {
       name: 'shouYe',
       text: '首页',
-      bounds: [140, 2268, 219, 2347],
+      bounds: [0, 2247, 360, 2394],
     },
     {
       name: 'mianFeiTing',
       text: '免费听',
-      bounds: [500, 2268, 579, 2347],
+      bounds: [360, 2247, 720, 2394],
     },
     {
       name: 'woDe',
       text: '我的',
-      bounds: [860, 2268, 939, 2347],
-    },
-    {
-      name: 'guanBiLvZuanTanChuangAnNiu',
-      desc: '关闭弹窗按钮',
-      bounds: [482, 1744, 598, 1860],
+      bounds: [720, 2247, 1080, 2394],
     },
     {
       name: 'kanShiPin',
       bounds: [39, 940, 1041, 1046],
     },
     {
-      name: 'huoDeJiangLi',
-      textContains: '免费听歌20分钟',
-    },
-    {
-      name: 'yiHuoDeJiangLi',
-      textContains: '已获得免费听歌20分钟',
-      bounds: [336, 587, 743, 671],
+      name: 'guangGaoTiShi',
+      id: 'tme_ad_tv_top_tips',
+      textContains: '退出',
+      bounds: [104, 152, 631, 214],
     },
     {
       name: 'dianJiGuangGao',
@@ -43,6 +35,16 @@ const MusicAppOptions = {
       name: 'guanBiGuangGao',
       desc: '关闭广告',
       bounds: [513, 152, 644, 214],
+    },
+    {
+      name: 'guanBiGuangGaoWangYe',
+      bounds: [94, 96, 199, 201],
+    },
+    {
+      name: 'guanBiLvZuanTanChuangAnNiu',
+      desc: '关闭弹窗按钮',
+      id: 'iv_close_dialog_button',
+      bounds: [482, 1744, 598, 1860],
     },
     {
       name: 'guanBiYiHuoDeJiangLiTanChuangAnNiu',

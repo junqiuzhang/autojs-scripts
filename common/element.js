@@ -1,5 +1,5 @@
 const global = require('./global.js');
-const { waitForReTry } = require('./utils.js');
+const { waitFor, waitForReTry } = require('./utils.js');
 
 class Element {
   constructor(options) {
@@ -11,6 +11,7 @@ class Element {
     }
   }
   selectorExists() {
+    console.log(`try to find ${this.name} with selector`);
     for (const [type, value] of Object.entries(global)) {
       if (this[type] && value(this[type]).exists()) {
         return true;
@@ -19,9 +20,12 @@ class Element {
     return false;
   }
   boundsExists() {
+    console.log(`try to find ${this.name} with bounds`);
     if (this.bounds) {
       const [left, top, right, bottom] = this.bounds;
-      return bounds(left, top, right, bottom).exists();
+      if (bounds(left, top, right, bottom).exists()) {
+        return true;
+      }
     }
     return false;
   }
@@ -43,14 +47,20 @@ class Element {
         console.log(`${this.name} exists`);
         return true;
       })
-      .catch(() => false);
+      .catch(() => {
+        console.log(`${this.name} not exists`);
+        return false;
+      });
   });
   clickSelector() {
+    console.log(`try to click ${this.name} with selector`);
     for (const [type, value] of Object.entries(global)) {
       if (
         this[type] &&
-        value(this[type]).clickable().findOnce() &&
-        value(this[type]).findOnce().click()
+        value(this[type]) &&
+        value(this[type]).clickable() &&
+        value(this[type]).clickable().findOne(this.timeout) &&
+        value(this[type]).clickable().findOne(this.timeout).click()
       ) {
         return true;
       }
@@ -58,9 +68,19 @@ class Element {
     return false;
   }
   clickBounds() {
+    console.log(`try to click ${this.name} with bounds`);
     if (this.bounds) {
       const [left, top, right, bottom] = this.bounds;
-      return click((left + right) / 2, (top + bottom) / 2);
+      if (
+        bounds(left, top, right, bottom).clickable() &&
+        bounds(left, top, right, bottom).clickable().findOne(this.timeout) &&
+        bounds(left, top, right, bottom)
+          .clickable()
+          .findOne(this.timeout)
+          .click()
+      ) {
+        return true;
+      }
     }
     return false;
   }
@@ -73,14 +93,43 @@ class Element {
     }
     return false;
   }
-  waitForClick = Promise.coroutine(function* () {
-    if (yield this.waitForExists()) {
-      this.click();
-      console.log(`${this.name} clicked`);
-      return true;
+  waitForClick() {
+    return waitFor((resolve) => {
+      console.log(`clicking ${this.name}`);
+      if (this.click()) {
+        console.log(`${this.name} clicked`);
+        resolve(true);
+      }
+    }, this.timeout);
+  }
+  selectorText() {
+    console.log(`try to get text of ${this.name} with selector`);
+    for (const [type, value] of Object.entries(global)) {
+      if (
+        this[type] &&
+        value(this[type]) &&
+        value(this[type]).findOne(this.timeout) &&
+        value(this[type]).findOne(this.timeout).text()
+      ) {
+        return value(this[type]).findOne(this.timeout).text();
+      }
     }
-    return false;
-  });
+  }
+  boundsText() {
+    console.log(`try to get text of ${this.name} with bounds`);
+    if (this.bounds) {
+      const [left, top, right, bottom] = this.bounds;
+      if (
+        bounds(left, top, right, bottom).findOne(this.timeout) &&
+        bounds(left, top, right, bottom).findOne(this.timeout).text()
+      ) {
+        return bounds(left, top, right, bottom).findOne(this.timeout).text();
+      }
+    }
+  }
+  text() {
+    return this.selectorText() || this.boundsText();
+  }
 }
 
 module.exports = Element;

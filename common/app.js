@@ -1,5 +1,5 @@
 const Element = require('./element.js');
-const { waitForReTry } = require('./utils.js');
+const { waitFor } = require('./utils.js');
 
 class App {
   constructor(options) {
@@ -17,27 +17,21 @@ class App {
     }
   }
   launch() {
-    if (app.launchApp(this.appName)) {
-      waitForPackage(this.packageName, this.timeout);
-      return true;
-    }
-    if (app.launchPackage(this.packageName)) {
-      waitForPackage(this.packageName, this.timeout);
-      return true;
+    if (this.packageName) {
+      return app.launchPackage(this.packageName);
     }
     return false;
   }
-  waitForLaunch = Promise.coroutine(function* () {
-    return waitForReTry(
-      (resolve, reject) => (this.launch() ? resolve(true) : reject(false)),
-      1000
-    )
-      .then(() => {
+  waitForLaunch() {
+    return waitFor((resolve) => {
+      console.log(`launching ${this.appName}`);
+      if (this.launch()) {
+        waitForPackage(this.packageName, this.timeout);
         console.log(`${this.appName} launched`);
-        return true;
-      })
-      .catch(() => false);
-  });
+        resolve(true);
+      }
+    }, this.timeout);
+  }
 }
 
 module.exports = App;
